@@ -15,6 +15,8 @@
 		D43D3E07221FCD4000F8C718 /* MoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E06221FCD4000F8C718 /* MoviesTests.swift */; };
 		D43D3E12221FCD4000F8C718 /* MoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E11221FCD4000F8C718 /* MoviesUITests.swift */; };
 		D43D3E20221FDD1000F8C718 /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E1F221FDD1000F8C718 /* MoviesTableViewCell.swift */; };
+		D43D3E24221FF32F00F8C718 /* WebServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E23221FF32F00F8C718 /* WebServiceAPI.swift */; };
+		D43D3E2A222014C800F8C718 /* DS & Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E29222014C800F8C718 /* DS & Algorithms.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		D43D3E11221FCD4000F8C718 /* MoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesUITests.swift; sourceTree = "<group>"; };
 		D43D3E13221FCD4000F8C718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D43D3E1F221FDD1000F8C718 /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
+		D43D3E23221FF32F00F8C718 /* WebServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceAPI.swift; sourceTree = "<group>"; };
+		D43D3E29222014C800F8C718 /* DS & Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DS & Algorithms.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +103,9 @@
 		D43D3DF0221FCD3F00F8C718 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				D43D3E2B2220449B00F8C718 /* Controllers */,
+				D43D3E22221FF2F200F8C718 /* APIs */,
 				D43D3E21221FEF4500F8C718 /* Views */,
-				D43D3DF1221FCD3F00F8C718 /* AppDelegate.swift */,
-				D43D3DF3221FCD3F00F8C718 /* ViewController.swift */,
 				D43D3DF8221FCD4000F8C718 /* Assets.xcassets */,
 				D43D3DFD221FCD4000F8C718 /* Info.plist */,
 			);
@@ -134,6 +138,24 @@
 				D43D3E1F221FDD1000F8C718 /* MoviesTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D43D3E22221FF2F200F8C718 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				D43D3E23221FF32F00F8C718 /* WebServiceAPI.swift */,
+				D43D3E29222014C800F8C718 /* DS & Algorithms.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		D43D3E2B2220449B00F8C718 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D43D3DF1221FCD3F00F8C718 /* AppDelegate.swift */,
+				D43D3DF3221FCD3F00F8C718 /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +292,8 @@
 				D43D3E20221FDD1000F8C718 /* MoviesTableViewCell.swift in Sources */,
 				D43D3DF4221FCD3F00F8C718 /* ViewController.swift in Sources */,
 				D43D3DF2221FCD3F00F8C718 /* AppDelegate.swift in Sources */,
+				D43D3E24221FF32F00F8C718 /* WebServiceAPI.swift in Sources */,
+				D43D3E2A222014C800F8C718 /* DS & Algorithms.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

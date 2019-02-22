@@ -9,18 +9,37 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var movies = [Movie]()
     @IBOutlet weak var tableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //web connection
+        WebService.share.webConnection(urlString: movies_url) { result in
+            //            print(result)
+            for dict in result{
+                self.movies.append(Movie(title: dict["title"] as? String ?? "", overview: dict["overview"] as? String ?? "", poster: dict["poster_path"] as? String ?? "", date: dict["release_date"] as? String ?? ""))
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        tableView.tableFooterView = UIView() // to remove additional lines separators
+        
+        // to remove additional lines separators
+        tableView.tableFooterView = UIView()
     }
+    
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        print("###",self.movies.count)
+        return self.movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -39,6 +58,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         spaceView.heightAnchor.constraint(equalToConstant: 0.9),
         spaceView.topAnchor.constraint(equalTo: cell.posterImage.bottomAnchor, constant: 20)
         ])
+        
+        // fill cell
+        cell.title.text = self.movies[indexPath.row].title
+        cell.overview.text = self.movies[indexPath.row].overview
+        cell.date.text = self.movies[indexPath.row].date
         
         return cell
     }
