@@ -14,6 +14,7 @@
 		D43D3DFC221FCD4000F8C718 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43D3DFA221FCD4000F8C718 /* LaunchScreen.storyboard */; };
 		D43D3E07221FCD4000F8C718 /* MoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E06221FCD4000F8C718 /* MoviesTests.swift */; };
 		D43D3E12221FCD4000F8C718 /* MoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E11221FCD4000F8C718 /* MoviesUITests.swift */; };
+		D43D3E20221FDD1000F8C718 /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E1F221FDD1000F8C718 /* MoviesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		D43D3E0D221FCD4000F8C718 /* MoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43D3E11221FCD4000F8C718 /* MoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesUITests.swift; sourceTree = "<group>"; };
 		D43D3E13221FCD4000F8C718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D43D3E1F221FDD1000F8C718 /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				D43D3DF8221FCD4000F8C718 /* Assets.xcassets */,
 				D43D3DFA221FCD4000F8C718 /* LaunchScreen.storyboard */,
 				D43D3DFD221FCD4000F8C718 /* Info.plist */,
+				D43D3E1F221FDD1000F8C718 /* MoviesTableViewCell.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D43D3E20221FDD1000F8C718 /* MoviesTableViewCell.swift in Sources */,
 				D43D3DF4221FCD3F00F8C718 /* ViewController.swift in Sources */,
 				D43D3DF2221FCD3F00F8C718 /* AppDelegate.swift in Sources */,
 			);
