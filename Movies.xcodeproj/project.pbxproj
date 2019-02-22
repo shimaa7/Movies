@@ -99,13 +99,11 @@
 		D43D3DF0221FCD3F00F8C718 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				D43D3E21221FEF4500F8C718 /* Views */,
 				D43D3DF1221FCD3F00F8C718 /* AppDelegate.swift */,
 				D43D3DF3221FCD3F00F8C718 /* ViewController.swift */,
-				D43D3DF5221FCD3F00F8C718 /* Main.storyboard */,
 				D43D3DF8221FCD4000F8C718 /* Assets.xcassets */,
-				D43D3DFA221FCD4000F8C718 /* LaunchScreen.storyboard */,
 				D43D3DFD221FCD4000F8C718 /* Info.plist */,
-				D43D3E1F221FDD1000F8C718 /* MoviesTableViewCell.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -126,6 +124,16 @@
 				D43D3E13221FCD4000F8C718 /* Info.plist */,
 			);
 			path = MoviesUITests;
+			sourceTree = "<group>";
+		};
+		D43D3E21221FEF4500F8C718 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D43D3DF5221FCD3F00F8C718 /* Main.storyboard */,
+				D43D3DFA221FCD4000F8C718 /* LaunchScreen.storyboard */,
+				D43D3E1F221FDD1000F8C718 /* MoviesTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
