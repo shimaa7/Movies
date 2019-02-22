@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
+
 let movies_url = "http://api.themoviedb.org/3/discover/movie?api_key=acea91d2bff1c53e6604e4985b6989e2"
+let image_url = "https://image.tmdb.org/t/p/w1280"
 
-
+// get data from web service
 class WebService: NSObject {
     
     static var share = WebService()
@@ -44,3 +47,43 @@ class WebService: NSObject {
     }
 }
 
+// download image from url
+extension UIImageView {
+    //   imageView.downloadedFrom(link: url)
+    
+    func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFill) {
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() {
+                self.image = image
+            }
+            }.resume()
+    }
+    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleToFill) {
+        guard let url = URL(string: link) else { return }
+        downloadedFrom(url: url, contentMode: mode)
+    }
+}
+
+// get image from url
+func get_image(_ url_str:String, _ imageView:UIImageView)
+{
+    if let url:URL = URL(string: url_str), url.host != nil {
+        // This is a correct url
+        DispatchQueue.main.async(execute: {
+            imageView.alpha = 0
+            
+            UIView.animate(withDuration: 0 , animations: {
+                imageView.alpha = 1.0
+            })
+        })
+    } else {
+        print("url  error is : ",url_str)
+    }
+}

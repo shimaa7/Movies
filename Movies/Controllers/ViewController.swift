@@ -11,11 +11,12 @@ import UIKit
 class ViewController: UIViewController {
     
     var movies = [Movie]()
+    var flixableHeight = [Int]()
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         //web connection
-        WebService.share.webConnection(urlString: movies_url) { result in
+        WebService.share.webConnection(urlString: movies_url + "&page=1") { result in
             //            print(result)
             for dict in result{
                 self.movies.append(Movie(title: dict["title"] as? String ?? "", overview: dict["overview"] as? String ?? "", poster: dict["poster_path"] as? String ?? "", date: dict["release_date"] as? String ?? ""))
@@ -25,7 +26,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -60,11 +60,20 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         ])
         
         // fill cell
-        cell.title.text = self.movies[indexPath.row].title
+        cell.title.text = self.movies[indexPath.row].title + "  " + "\(indexPath.row)"
         cell.overview.text = self.movies[indexPath.row].overview
         cell.date.text = self.movies[indexPath.row].date
-        
+        if self.movies[indexPath.row].poster != ""{
+            let imageURL = (image_url + self.movies[indexPath.row].poster)
+            cell.posterImage.downloadedFrom(link: imageURL)
+            get_image(imageURL, cell.posterImage) //loadImage
+        }else{
+            cell.posterImage.image = #imageLiteral(resourceName: "movies_poster")
+        }
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height * 0.4
     }
     
 }

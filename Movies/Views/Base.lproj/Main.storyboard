@@ -59,8 +59,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="197"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movies_poster" translatesAutoresizingMaskIntoConstraints="NO" id="zQH-Gv-GU8">
-                                                    <rect key="frame" x="0.0" y="20" width="131" height="177"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="240" image="movies_poster" translatesAutoresizingMaskIntoConstraints="NO" id="zQH-Gv-GU8">
+                                                    <rect key="frame" x="0.0" y="20" width="131" height="169"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfm-4y-a98">
                                                     <rect key="frame" x="141" y="20" width="224" height="169"/>
@@ -122,14 +122,14 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zQH-Gv-GU8" firstAttribute="leading" secondItem="fNB-nV-2I0" secondAttribute="leading" id="2Ec-1Y-h9h"/>
                                                 <constraint firstItem="Rfm-4y-a98" firstAttribute="width" secondItem="fNB-nV-2I0" secondAttribute="width" multiplier="0.6" id="8X8-vK-NvY"/>
-                                                <constraint firstAttribute="bottom" secondItem="zQH-Gv-GU8" secondAttribute="bottom" id="M6O-A0-2e9"/>
+                                                <constraint firstAttribute="bottom" secondItem="zQH-Gv-GU8" secondAttribute="bottom" constant="8" id="RmU-tW-VGX"/>
                                                 <constraint firstItem="Rfm-4y-a98" firstAttribute="top" secondItem="fNB-nV-2I0" secondAttribute="top" constant="20" id="SyE-Os-9Q9"/>
                                                 <constraint firstAttribute="trailing" secondItem="Rfm-4y-a98" secondAttribute="trailing" constant="8" id="YOQ-F3-L6l"/>
-                                                <constraint firstItem="zQH-Gv-GU8" firstAttribute="top" secondItem="fNB-nV-2I0" secondAttribute="top" constant="20" id="aHr-hl-rEm"/>
-                                                <constraint firstItem="Rfm-4y-a98" firstAttribute="leading" secondItem="zQH-Gv-GU8" secondAttribute="trailing" constant="10" id="lEb-V7-Aik"/>
+                                                <constraint firstItem="Rfm-4y-a98" firstAttribute="leading" secondItem="zQH-Gv-GU8" secondAttribute="trailing" constant="10" id="Zez-ia-Jzt"/>
+                                                <constraint firstItem="zQH-Gv-GU8" firstAttribute="top" secondItem="fNB-nV-2I0" secondAttribute="top" constant="20" id="jOg-dr-koS"/>
                                                 <constraint firstAttribute="bottom" secondItem="Rfm-4y-a98" secondAttribute="bottom" constant="8" id="n94-2y-RMA"/>
+                                                <constraint firstItem="zQH-Gv-GU8" firstAttribute="leading" secondItem="fNB-nV-2I0" secondAttribute="leading" id="uYI-ri-uD5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
