@@ -46,6 +46,9 @@
                                     <segment title="My Movies"/>
                                 </segments>
                                 <color key="tintColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="ChangeMovieSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="fxg-zT-iVr"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pop-do-xEu">
                                 <rect key="frame" x="20.5" y="100.5" width="373" height="643.5"/>

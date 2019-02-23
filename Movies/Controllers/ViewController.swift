@@ -11,8 +11,12 @@ import UIKit
 class ViewController: UIViewController {
     
     var movies = [Movie]()
+    var myMovies = [Movie]()
+    var posterImages = [String: UIImage]()
+    var movieSegment = MovieType.AllMovies
     var currentPage = 0
     var totalPages = 0
+
     @IBOutlet weak var tableView: UITableView!
     
     // activity indicator setup
@@ -26,6 +30,41 @@ class ViewController: UIViewController {
         view.addSubview(activityIndecator)
     }
 
+    // when there is no data result not found message setup
+    var notFound = UILabel(frame: CGRect(x: UIScreen.main.bounds.size.width / 4, y: UIScreen.main.bounds.size.height / 3, width: UIScreen.main.bounds.size.width / 2, height: 30))
+    func NotFoundAction(_ show: Bool){
+        notFound.textAlignment = .center
+        notFound.text = "No Result Found."
+        notFound.textColor = #colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1)
+        if show{
+            view.addSubview(notFound)
+        }else{
+            notFound.removeFromSuperview()
+        }
+    }
+    
+    // change movies type
+    @IBAction func ChangeMovieSegment(_ sender: UISegmentedControl) {
+        self.NotFoundAction(false) // remove from the new view
+        switch sender.selectedSegmentIndex {
+        case 1:
+            self.movieSegment = MovieType.MyMovies
+            if self.myMovies.count == 0{
+                self.NotFoundAction(true)
+            }else{
+                self.NotFoundAction(false)
+            }
+        default:
+            self.movieSegment = MovieType.AllMovies
+            if self.movies.count == 0{
+                self.NotFoundAction(true)
+            }else{
+                self.NotFoundAction(false)
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         //web connection
         activityIndecator.startAnimating()
@@ -35,12 +74,11 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
         // to remove additional lines separators
         tableView.tableFooterView = UIView()
     }
     
+    // load more data from server for allmovies
     func loadMoreData(){
         self.currentPage += 1
         WebService.share.webConnection(urlString: movies_url + "&page=\(currentPage)") { result,noOfPages  in
@@ -60,7 +98,12 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        print("#",self.movies.count)
-        return self.movies.count
+        switch movieSegment{
+        case MovieType.MyMovies:
+            return self.myMovies.count
+        default:
+            return self.movies.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,15 +123,24 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         ])
         
         // fill cell
-        cell.title.text = self.movies[indexPath.row].title
-        cell.overview.text = self.movies[indexPath.row].overview
-        cell.date.text = self.movies[indexPath.row].date
-        if self.movies[indexPath.row].poster != ""{
-            let imageURL = (image_url + self.movies[indexPath.row].poster)
-            cell.posterImage.downloadedFrom(link: imageURL)
-            get_image(imageURL, cell.posterImage) //loadImage
-        }else{
-            cell.posterImage.image = #imageLiteral(resourceName: "movies_poster")
+        switch movieSegment{
+        case MovieType.MyMovies:
+            cell.title.text = self.myMovies[indexPath.row].title
+            cell.overview.text = self.myMovies[indexPath.row].overview
+            cell.date.text = self.myMovies[indexPath.row].date
+            let posterIndex = self.myMovies[indexPath.row].poster
+            cell.posterImage.image = self.posterImages[posterIndex]
+        default:
+            cell.title.text = self.movies[indexPath.row].title
+            cell.overview.text = self.movies[indexPath.row].overview
+            cell.date.text = self.movies[indexPath.row].date
+            if self.movies[indexPath.row].poster != ""{
+                let imageURL = (image_url + self.movies[indexPath.row].poster)
+                cell.posterImage.downloadedFrom(link: imageURL)
+                get_image(imageURL, cell.posterImage) //loadImage
+            }else{
+                cell.posterImage.image = #imageLiteral(resourceName: "movies_poster")
+            }
         }
         
         return cell
@@ -97,7 +149,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return view.frame.height * 0.4
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+        // to load more data from server
+        if self.movieSegment == MovieType.AllMovies{
         let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
         if indexPath.row == lastRowIndex && lastRowIndex + 1 != self.totalPages{
 //             print("this is the last cell")
@@ -111,6 +164,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             self.loadMoreData()
             spinner.stopAnimating()
         }
+    }
     }
     
 }

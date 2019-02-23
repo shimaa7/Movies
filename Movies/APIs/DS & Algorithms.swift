@@ -16,3 +16,8 @@ struct Movie{
     var date: String
 }
 
+// movie segment
+enum MovieType {
+    case AllMovies
+    case MyMovies
+}
