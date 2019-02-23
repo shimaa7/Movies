@@ -16,4 +16,3 @@ struct Movie{
     var date: String
 }
 
-

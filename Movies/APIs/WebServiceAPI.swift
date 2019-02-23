@@ -17,7 +17,7 @@ class WebService: NSObject {
     
     static var share = WebService()
     
-    func webConnection(urlString: String, completionHandler:  @escaping (_ result: [[String: Any]]) -> ()){
+    func webConnection(urlString: String, completionHandler:  @escaping (_ result: [[String: Any]],_ pages: Int) -> ()){
         guard let url = URL(string: urlString) else {return}
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let dataResponse = data,
@@ -34,10 +34,13 @@ class WebService: NSObject {
                     return
                 }
                 // array of dict
+                guard let pagesNo = jsonDict["total_pages"] as? Int else {
+                    return
+                }
                 guard let results = jsonDict["results"] as? [[String: Any]] else {
                     return
                 }
-                completionHandler(results)
+                completionHandler(results,pagesNo)
                 return
             } catch let parsingError {
                 print("Error", parsingError)
