@@ -50,28 +50,46 @@ class WebService: NSObject {
     }
 }
 
-// download image from url
-extension UIImageView {
-    //   imageView.downloadedFrom(link: url)
+let imageCache = NSCache<AnyObject, AnyObject>()
+
+class CustomImageView: UIImageView {
     
-    func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFill) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else { return }
-            DispatchQueue.main.async() {
-                self.image = image
+    var imageUrlString: String?
+    
+    func loadImageUsingUrlString(urlString: String) {
+        
+        imageUrlString = urlString
+        
+        let url = NSURL(string: urlString)
+        
+        image = #imageLiteral(resourceName: "movies_poster")
+        
+        if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
+            self.image = imageFromCache
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, respones, error) in
+            
+            if error != nil {
+                print(error as Any)
+                return
             }
-            }.resume()
+            
+            DispatchQueue.main.async {
+                
+                let imageToCache = UIImage(data: data!)
+                
+                if self.imageUrlString == urlString {
+                    self.image = imageToCache
+                }
+                
+                imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
+            }
+            
+        }).resume()
     }
-    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleToFill) {
-        guard let url = URL(string: link) else { return }
-        downloadedFrom(url: url, contentMode: mode)
-    }
+    
 }
 
 // get image from url

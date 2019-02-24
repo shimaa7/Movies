@@ -31,10 +31,10 @@ class ViewController: UIViewController {
         activityIndecator.hidesWhenStopped = true
         activityIndecator.style = UIActivityIndicatorView.Style.gray
         activityIndecator.transform = CGAffineTransform(scaleX: 4, y: 4)
-        view.addSubview(activityIndecator)
+        self.view.addSubview(activityIndecator)
     }
 
-    // when there is no data result not found message setup
+    // when there is no data result "not found message" setup
     var notFound = UILabel(frame: CGRect(x: UIScreen.main.bounds.size.width / 4, y: UIScreen.main.bounds.size.height / 3, width: UIScreen.main.bounds.size.width / 2, height: 30))
     func NotFoundAction(_ show: Bool){
         notFound.textAlignment = .center
@@ -49,17 +49,19 @@ class ViewController: UIViewController {
     
     // change movies type
     @IBAction func ChangeMovieSegment(_ sender: UISegmentedControl) {
+        self.tableView.tableFooterView = UIView() // remove spanner when change segment
         self.addView.isHidden = true // to hide the view when open another segment
         self.NotFoundAction(false) // remove from the new view
         switch sender.selectedSegmentIndex {
         case 1:
             self.movieSegment = MovieType.MyMovies
             self.checkData(count: self.myMovies.count)
+            self.tableView.reloadData()
         default:
             self.movieSegment = MovieType.AllMovies
             self.checkData(count: self.movies.count)
+            self.tableView.reloadData()
         }
-        self.tableView.reloadData()
     }
     
     // add new movie
@@ -77,18 +79,18 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //web connection
         activityIndecator.startAnimating()
-        self.loadMoreData()
-        activityIndecator.stopAnimating()
-        
+        self.loadMoreData(activityIndecator)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // to remove additional lines separators
-        tableView.tableFooterView = UIView()
+        
+        tableView.tableFooterView = UIView() // to remove additional lines separators
+        self.setupActivityLoading()
+
     }
     
     // load more data from server for all movies
-    func loadMoreData(){
+    func loadMoreData(_ activityIndecator: UIActivityIndicatorView){
         self.currentPage += 1
         WebService.share.webConnection(urlString: movies_url + "&page=\(currentPage)") { result,noOfPages  in
             //            print(result)
@@ -98,6 +100,7 @@ class ViewController: UIViewController {
             }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                activityIndecator.stopAnimating()
             }
         }
     }
@@ -154,8 +157,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             cell.date.text = self.movies[indexPath.row].date
             if self.movies[indexPath.row].poster != ""{
                 let imageURL = (image_url + self.movies[indexPath.row].poster)
-                cell.posterImage.downloadedFrom(link: imageURL)
-                get_image(imageURL, cell.posterImage) //loadImage
+                let customImage = CustomImageView()
+                customImage.loadImageUsingUrlString(urlString: imageURL)
+//                cell.posterImage.loadImageUsingUrlString(urlString: imageURL)
+                get_image(imageURL, customImage) //loadImage
+                cell.posterImage.image = customImage.image
             }else{
                 cell.posterImage.image = #imageLiteral(resourceName: "movies_poster")
             }
@@ -179,8 +185,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             self.tableView.tableFooterView = spinner
             self.tableView.tableFooterView?.isHidden = false
             
-            self.loadMoreData()
-            spinner.stopAnimating()
+            self.loadMoreData(spinner)
+//            spinner.stopAnimating()
         }
     }
     }
