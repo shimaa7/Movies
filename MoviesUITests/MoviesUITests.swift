@@ -2,7 +2,7 @@
 //  MoviesUITests.swift
 //  MoviesUITests
 //
-//  Created by Shimaa Hassan on 2/22/19.
+//  Created by Shimaa Hassan on 2/24/19.
 //  Copyright © 2019 Shimaa Hassan. All rights reserved.
 //
 
@@ -29,6 +29,21 @@ class MoviesUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        app/*@START_MENU_TOKEN@*/.buttons["All Movies"]/*[[".segmentedControls.buttons[\"All Movies\"]",".buttons[\"All Movies\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["My Movies"]/*[[".segmentedControls.buttons[\"My Movies\"]",".buttons[\"My Movies\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.navigationBars["Movies Time"].buttons["Add"].tap()
+        app.textFields["Write title ..."].tap()
+        app.textViews.staticTexts["Write overview ..."].tap()
+        app.textViews.containing(.staticText, identifier:"Write overview ...").element.tap()
+        
+        let ddMmYyyTextField = app.textFields["DD/MM/YYY"]
+        ddMmYyyTextField.tap()
+        ddMmYyyTextField.tap()
+        app.buttons["ADD"].tap()
+        app.otherElements.containing(.navigationBar, identifier:"Movies Time").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .table).element.tap()
+        
     }
 
 }

@@ -19,6 +19,7 @@ Project Description
 Project Design
 ============
 Project consist of 4 main parts:
+
 1- apis
 
     to make the connection with the server to get data and download image from url.
@@ -34,4 +35,4 @@ Project consist of 4 main parts:
 
 Notes
 =====
-● I'm do not use any third party libraries
+● I'm do not use any third party libraries.
