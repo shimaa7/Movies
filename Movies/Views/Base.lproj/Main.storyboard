@@ -167,6 +167,9 @@
                     <navigationItem key="navigationItem" title="Movies Time" id="QNd-UD-S70">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="sN1-7a-zda">
                             <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="AddMovie:" destination="BYZ-38-t0r" id="eUl-qy-xil"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

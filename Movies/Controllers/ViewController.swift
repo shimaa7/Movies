@@ -16,7 +16,8 @@ class ViewController: UIViewController {
     var movieSegment = MovieType.AllMovies
     var currentPage = 0
     var totalPages = 0
-
+    var addView = UIView()
+    var addImage = UIButton()
     @IBOutlet weak var tableView: UITableView!
     
     // activity indicator setup
@@ -45,24 +46,27 @@ class ViewController: UIViewController {
     
     // change movies type
     @IBAction func ChangeMovieSegment(_ sender: UISegmentedControl) {
+        self.addView.isHidden = true
         self.NotFoundAction(false) // remove from the new view
         switch sender.selectedSegmentIndex {
         case 1:
             self.movieSegment = MovieType.MyMovies
-            if self.myMovies.count == 0{
-                self.NotFoundAction(true)
-            }else{
-                self.NotFoundAction(false)
-            }
+            self.checkData(count: self.myMovies.count)
         default:
             self.movieSegment = MovieType.AllMovies
-            if self.movies.count == 0{
-                self.NotFoundAction(true)
-            }else{
-                self.NotFoundAction(false)
-            }
+            self.checkData(count: self.movies.count)
         }
         self.tableView.reloadData()
+    }
+    
+    @IBAction func AddMovie(_ sender: UIBarButtonItem) {
+        let newIndex = String(self.myMovies.count)
+        (self.addView, self.addImage) = addNewMovie(viewController: self,view: self.view, index: newIndex, completionHandler: { (movie, posterImage) in
+            self.myMovies.append(movie)
+            self.posterImages[newIndex] = posterImage
+            self.tableView.reloadData()
+            self.checkData(count: self.myMovies.count)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +94,15 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    // check found data
+    func checkData(count: Int){
+        if count == 0{
+            self.NotFoundAction(true)
+        }else{
+            self.NotFoundAction(false)
         }
     }
     
@@ -167,4 +180,19 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     }
     
+}
+
+extension ViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate
+{
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
+    {
+        let image_data = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        //        let imageData: Data = UIImagePNGRepresentation(image_data!)!
+        //        let imageString = imageData.base64EncodedString()
+        //        let image_data = info[UIImagePickerControllerOriginalImage] as? UIImage
+        let newIndex = self.myMovies.count
+        self.posterImages[String(newIndex)] = image_data
+        self.addImage.setImage(image_data, for: .normal)
+        self.dismiss(animated: true, completion: nil)
+    }
 }
