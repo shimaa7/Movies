@@ -1,5 +1,7 @@
 # Movies Time
-<img src="https://user-images.githubusercontent.com/19923951/53302215-d1d82800-3864-11e9-87d4-068f6f8d3497.png" width="48">
+<img src="https://user-images.githubusercontent.com/19923951/53302215-d1d82800-3864-11e9-87d4-068f6f8d3497.png" height="200" width="100">
+<img src="https://user-images.githubusercontent.com/19923951/53302217-e6b4bb80-3864-11e9-9312-08d48ff5acf3.png" height="200" width="100">
+<img src="https://user-images.githubusercontent.com/19923951/53302230-03e98a00-3865-11e9-8e63-561339724042.png" height="200" width="100">
 
 Overview
 =======
