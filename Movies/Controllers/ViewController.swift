@@ -10,20 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // for all movies
     var movies = [Movie]()
-    var myMovies = [Movie]()
-    var posterImages = [String: UIImage]()
-    var movieSegment = MovieType.AllMovies
     var currentPage = 0
     var totalPages = 0
-    var addView = UIView()
+    
+    // for my movies
+    var movieSegment = MovieType.AllMovies
+    var myMovies = [Movie]()
+    var posterImages = [String: UIImage]()
     var addImage = UIButton()
+    var addView = UIView()
+
     @IBOutlet weak var tableView: UITableView!
     
     // activity indicator setup
     let activityIndecator: UIActivityIndicatorView = UIActivityIndicatorView()
     func setupActivityLoading(){
-        //                        activity indecator
         activityIndecator.center = self.view.center
         activityIndecator.hidesWhenStopped = true
         activityIndecator.style = UIActivityIndicatorView.Style.gray
@@ -46,7 +49,7 @@ class ViewController: UIViewController {
     
     // change movies type
     @IBAction func ChangeMovieSegment(_ sender: UISegmentedControl) {
-        self.addView.isHidden = true
+        self.addView.isHidden = true // to hide the view when open another segment
         self.NotFoundAction(false) // remove from the new view
         switch sender.selectedSegmentIndex {
         case 1:
@@ -59,6 +62,7 @@ class ViewController: UIViewController {
         self.tableView.reloadData()
     }
     
+    // add new movie
     @IBAction func AddMovie(_ sender: UIBarButtonItem) {
         let newIndex = String(self.myMovies.count)
         (self.addView, self.addImage) = addNewMovie(viewController: self,view: self.view, index: newIndex, completionHandler: { (movie, posterImage) in
@@ -69,6 +73,7 @@ class ViewController: UIViewController {
         })
     }
     
+    // to load data in the first time
     override func viewWillAppear(_ animated: Bool) {
         //web connection
         activityIndecator.startAnimating()
@@ -82,7 +87,7 @@ class ViewController: UIViewController {
         tableView.tableFooterView = UIView()
     }
     
-    // load more data from server for allmovies
+    // load more data from server for all movies
     func loadMoreData(){
         self.currentPage += 1
         WebService.share.webConnection(urlString: movies_url + "&page=\(currentPage)") { result,noOfPages  in
@@ -192,7 +197,7 @@ extension ViewController: UIImagePickerControllerDelegate,UINavigationController
         //        let image_data = info[UIImagePickerControllerOriginalImage] as? UIImage
         let newIndex = self.myMovies.count
         self.posterImages[String(newIndex)] = image_data
-        self.addImage.setImage(image_data, for: .normal)
+        self.addImage.setImage(image_data, for: .normal) // to change image in addImageView
         self.dismiss(animated: true, completion: nil)
     }
 }
