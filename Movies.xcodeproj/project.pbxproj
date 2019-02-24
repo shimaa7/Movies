@@ -19,7 +19,8 @@
 		D43D3E12221FCD4000F8C718 /* MoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E11221FCD4000F8C718 /* MoviesUITests.swift */; };
 		D43D3E20221FDD1000F8C718 /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E1F221FDD1000F8C718 /* MoviesTableViewCell.swift */; };
 		D43D3E24221FF32F00F8C718 /* WebServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E23221FF32F00F8C718 /* WebServiceAPI.swift */; };
-		D43D3E2A222014C800F8C718 /* DS & Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E29222014C800F8C718 /* DS & Algorithms.swift */; };
+		D43D3E2A222014C800F8C718 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D3E29222014C800F8C718 /* MovieModel.swift */; };
+		D48F02FB2222F16700FD11D0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D48F02FA2222F16700FD11D0 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +59,8 @@
 		D43D3E13221FCD4000F8C718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D43D3E1F221FDD1000F8C718 /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
 		D43D3E23221FF32F00F8C718 /* WebServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceAPI.swift; sourceTree = "<group>"; };
-		D43D3E29222014C800F8C718 /* DS & Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DS & Algorithms.swift"; sourceTree = "<group>"; };
+		D43D3E29222014C800F8C718 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		D48F02FA2222F16700FD11D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		D43D3DE5221FCD3F00F8C718 = {
 			isa = PBXGroup;
 			children = (
+				D48F02FA2222F16700FD11D0 /* README.md */,
 				D43D3DF0221FCD3F00F8C718 /* Movies */,
 				D43D3E05221FCD4000F8C718 /* MoviesTests */,
 				D43D3E10221FCD4000F8C718 /* MoviesUITests */,
@@ -109,9 +112,10 @@
 		D43D3DF0221FCD3F00F8C718 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
-				D43D3E2B2220449B00F8C718 /* Controllers */,
 				D43D3E22221FF2F200F8C718 /* APIs */,
+				D48F02FC2222F19E00FD11D0 /* Model */,
 				D43D3E21221FEF4500F8C718 /* Views */,
+				D43D3E2B2220449B00F8C718 /* Controllers */,
 				D43D3DF8221FCD4000F8C718 /* Assets.xcassets */,
 				D43D3DFD221FCD4000F8C718 /* Info.plist */,
 			);
@@ -153,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				D43D3E23221FF32F00F8C718 /* WebServiceAPI.swift */,
-				D43D3E29222014C800F8C718 /* DS & Algorithms.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -165,6 +168,14 @@
 				D43D3DF3221FCD3F00F8C718 /* ViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D48F02FC2222F19E00FD11D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D43D3E29222014C800F8C718 /* MovieModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +284,7 @@
 			files = (
 				D43D3DFC221FCD4000F8C718 /* LaunchScreen.storyboard in Resources */,
 				D43D3DF9221FCD4000F8C718 /* Assets.xcassets in Resources */,
+				D48F02FB2222F16700FD11D0 /* README.md in Resources */,
 				D43D3DF7221FCD3F00F8C718 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,7 +315,7 @@
 				D43D3DF2221FCD3F00F8C718 /* AppDelegate.swift in Sources */,
 				D43D3E24221FF32F00F8C718 /* WebServiceAPI.swift in Sources */,
 				D41D0FA822220E6100161697 /* TargetClosureUIButton.swift in Sources */,
-				D43D3E2A222014C800F8C718 /* DS & Algorithms.swift in Sources */,
+				D43D3E2A222014C800F8C718 /* MovieModel.swift in Sources */,
 				D41D0FA42221E31F00161697 /* AddNewMovie.swift in Sources */,
 				D41D0FA62222019A00161697 /* TextViewPlaceholder.swift in Sources */,
 			);
