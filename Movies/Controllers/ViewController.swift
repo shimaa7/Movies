@@ -48,6 +48,7 @@ class ViewController: UIViewController {
     }
     
     // change movies type
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBAction func ChangeMovieSegment(_ sender: UISegmentedControl) {
         self.tableView.tableFooterView = UIView() // remove spanner when change segment
         self.addView.isHidden = true // to hide the view when open another segment
@@ -65,6 +66,7 @@ class ViewController: UIViewController {
     }
     
     // add new movie
+    @IBOutlet weak var addMovieButton: UIBarButtonItem!
     @IBAction func AddMovie(_ sender: UIBarButtonItem) {
         let newIndex = String(self.myMovies.count)
         (self.addView, self.addImage) = addNewMovie(viewController: self,view: self.view, index: newIndex, completionHandler: { (movie, posterImage) in

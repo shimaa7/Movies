@@ -19,10 +19,28 @@ class MoviesTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func testSegmentsTap() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let segments = ["All Movies","My Movies"]
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        controller.loadViewIfNeeded()
+        controller.segmentControl.selectedSegmentIndex = 0
+        let firstSegment = controller.segmentControl.titleForSegment(at: 0)
+        let secondSegment = controller.segmentControl.titleForSegment(at: 1)
+        XCTAssertEqual(segments[0], firstSegment)
+        XCTAssertEqual(segments[1], secondSegment)
+
     }
+    func testAddMovie() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        controller.loadViewIfNeeded()
+        controller.AddMovie(controller.addMovieButton)
+        XCTAssert(!controller.addView.isHidden, "add button doesn't work!")
+    }
+
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

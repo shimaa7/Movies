@@ -33,7 +33,7 @@
         <!--Movies Time-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -173,6 +173,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addMovieButton" destination="sN1-7a-zda" id="X5f-wO-9Hr"/>
+                        <outlet property="segmentControl" destination="z6w-74-5jE" id="ZK2-Ha-rau"/>
                         <outlet property="tableView" destination="pop-do-xEu" id="dwe-WE-Hm9"/>
                     </connections>
                 </viewController>
